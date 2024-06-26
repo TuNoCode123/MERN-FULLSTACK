@@ -1,0 +1,121 @@
+.system-container {
+  width: 100%;
+  .system-header {
+    padding: 0 20px;
+    height: 50px;
+    background-color: darkturquoise;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    // .left-system-header {
+    // }
+    .right-system-header {
+      display: flex;
+      gap: 25px;
+      align-items: center;
+      .system-languages {
+        display: flex;
+        gap: 5px;
+        .language-vi {
+          cursor: pointer;
+          opacity: 0.6;
+          transform: scale(0.8);
+          &.selected {
+            opacity: 1;
+            transform: scale(1);
+            color: crimson;
+          }
+        }
+        .language-en {
+          cursor: pointer;
+          cursor: pointer;
+          opacity: 0.6;
+          transform: scale(0.8);
+          &.selected {
+            opacity: 1;
+            transform: scale(1);
+            color: gold;
+          }
+        }
+      }
+      .system-out {
+        height: 30px;
+        width: 30px;
+        svg {
+          width: 100%;
+          height: 100%;
+          color: azure;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+  .system-banner {
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 15px;
+    .user-container {
+      width: 100%;
+      .user-content {
+        .user-title {
+          width: max-content;
+          height: max-content;
+          font-size: 35px;
+          margin: 0 auto;
+          color: deepskyblue;
+        }
+        .user-submit {
+          display: flex;
+          gap: 10px;
+          align-items: center;
+          svg {
+            cursor: pointer;
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            color: orange;
+          }
+        }
+        // .user-table {
+        // }
+      }
+    }
+  }
+}
+.user-img {
+  .img-input {
+    width: max-content;
+    height: max-content;
+    padding: 5px;
+    background-color: rgb(213, 207, 207);
+
+    label {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      cursor: pointer;
+    }
+  }
+  .preview-img {
+    margin-top: 15px;
+    width: 250px;
+    height: 70px;
+    border: 1px solid rgb(224, 215, 215);
+    .img {
+      width: 70%;
+      height: 100%;
+      margin: 0 auto;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        cursor: pointer;
+      }
+      .alt-img {
+        display: inline-block;
+        transform: translate(90%, 90%);
+        color: rgb(199, 189, 189);
+      }
+    }
+  }
+}

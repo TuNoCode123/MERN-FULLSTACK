@@ -1,0 +1,25 @@
+.d-container {
+  width: 100%;
+  .d-tittle {
+    height: max-content;
+    width: max-content;
+    font-size: 30px;
+    font-weight: 600;
+    margin: 20px auto;
+  }
+  .d-content {
+    display: flex;
+    width: 100%;
+    gap: 30px;
+    margin-bottom: 30px;
+    .d-content-left {
+      width: 40%;
+    }
+    .d-content-right {
+      width: 60%;
+      textarea {
+        padding: 10px;
+      }
+    }
+  }
+}

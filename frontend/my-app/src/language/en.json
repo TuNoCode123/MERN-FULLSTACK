@@ -1,0 +1,39 @@
+{
+  "Header": {
+    "All": "All",
+    "AtHome": "At Home",
+    "AtHospital": "At Hospital",
+    "HelthyLife": "Helthy Life"
+  },
+  "languages": "languages",
+  "overview": "overview",
+  "system": {
+    "header": {
+      "users": {
+        "user": "User",
+        "manageUser": "Manage User",
+        "manageDoctor": "Manage Doctor",
+        "manageAdmin": "Manage Admin"
+      },
+      "languages": {
+        "hello": "Hello, "
+      }
+    },
+    "banner": {
+      "form": {
+        "email": "Email",
+        "passWord": "PassWord",
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "phoneNumber": "phoneNumber",
+        "address": "Address",
+        "gender": "Gender",
+        "position": "Position",
+        "avata": "Avata",
+        "submit": "Create",
+        "edit": "Edit",
+        "role": "Role"
+      }
+    }
+  }
+}

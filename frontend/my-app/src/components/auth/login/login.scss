@@ -1,0 +1,125 @@
+* {
+  font-family: "Times New Roman", Times, serif;
+}
+.overview {
+  width: 100%;
+  height: 100vh;
+  background-color: lightblue;
+  .container {
+    width: 30%;
+    height: 500px;
+    background-color: white;
+    z-index: 10;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 5%;
+    .choose {
+      font-size: 25px;
+      text-align: center;
+      margin-top: 2%;
+      color: deepskyblue;
+      font-weight: 600;
+    }
+    .interface {
+      width: 100%;
+      .container-interface {
+        width: 150px;
+        height: 140px;
+        border: 2px solid rgb(199, 191, 191);
+        position: relative;
+        cursor: pointer;
+        border-radius: 10px;
+        box-shadow: 2px 2px 3px #888888;
+        .icon-i {
+          height: 35px;
+          width: 35px;
+          position: absolute;
+          bottom: 0;
+          right: 0;
+          transform: translate(9px, 12px);
+          border-radius: 50%;
+          svg {
+            width: 100%;
+            height: 100%;
+            color: aqua;
+            display: none;
+          }
+        }
+        &.active {
+          border: 2px solid lightblue;
+          svg {
+            display: block;
+          }
+        }
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+        }
+      }
+    }
+
+    .guild {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      color: rgb(165, 158, 158);
+    }
+    .child {
+      width: 100%;
+      height: 40px;
+      // margin: 0 auto;
+      // background-color: red;
+      // border: 2px solid lightblue;
+      border: 1px solid rgb(182, 175, 175);
+      &.click {
+        border: 2px solid lightblue;
+      }
+      display: flex;
+      border-radius: 5px;
+      gap: 2px;
+      position: relative;
+      .icon {
+        width: 10%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        svg {
+          color: rgb(168, 155, 155);
+          width: 60%;
+          height: 60%;
+        }
+      }
+      .input {
+        width: 68%;
+        height: 100%;
+
+        input {
+          width: 100%;
+          height: 100%;
+
+          outline: none;
+          border: none;
+        }
+      }
+      .forgot {
+        width: 20%;
+        height: 70%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        border-left: 1px solid rgb(147, 142, 142);
+        color: aqua;
+        font-weight: 600;
+        cursor: pointer;
+      }
+    }
+  }
+}
