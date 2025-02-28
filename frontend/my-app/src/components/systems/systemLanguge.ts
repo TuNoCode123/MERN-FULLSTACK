@@ -1,5 +1,3 @@
-import { link } from "fs";
-
 export const menu = {
   user: {
     name: "system.header.users.user",
@@ -7,6 +5,33 @@ export const menu = {
       { id: "system.header.users.manageUser", link: "/system/user-crud" },
       { id: "system.header.users.manageDoctor", link: "/system/doctor" },
       { id: "system.header.users.manageAdmin", link: "/system/admin" },
+      {
+        id: "system.header.users.manageSchedual",
+        link: "/system/schedual-doctor",
+      },
+      { id: "system.header.users.manageClinic", link: "/system/clinic" },
+    ],
+  },
+  speciality: {
+    name: "system.header.speciality.name",
+    child: [
+      {
+        id: "system.header.speciality.manageSpeciality",
+        link: "/system/manage-speciality",
+      },
+    ],
+  },
+  doctor: {
+    name: "system.header.users.user",
+    child: [
+      {
+        id: "system.header.users.manageSchedual",
+        link: "/system/schedual-doctor",
+      },
+      {
+        id: "system.header.users.confirmSchedual",
+        link: "/system/confirm-schedual",
+      },
     ],
   },
   leftContent: {
@@ -27,5 +52,6 @@ export const banner = {
     input10: "system.banner.form.submit",
     input11: "system.banner.form.edit",
     input12: "system.banner.form.role",
+    input13: "system.banner.form.speciality",
   },
 };

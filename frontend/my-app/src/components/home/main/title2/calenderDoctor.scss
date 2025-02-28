@@ -1,0 +1,51 @@
+.calender-container {
+  width: 100%;
+  height: 100%;
+  .c-select {
+    width: 30%;
+  }
+  .c-list-date {
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+    .child {
+      width: 120px;
+      height: 50px;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #eeeeee;
+      font-weight: 600;
+      cursor: pointer;
+      &.child:hover {
+        border: 3px solid rgba(59, 130, 246, 0.5);
+      }
+    }
+    .c-child {
+      font-size: 25px;
+      font-weight: 600;
+    }
+  }
+  .c-t {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    .t1 {
+      font-weight: 600;
+    }
+  }
+
+  .c-t2 {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #746e6e;
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}

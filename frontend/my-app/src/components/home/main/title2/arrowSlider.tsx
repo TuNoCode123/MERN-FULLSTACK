@@ -14,11 +14,9 @@ export const useArrowSlider = (
   const [isClickPre, setIsClickPre] = useState<boolean>(true);
   const [isClickNext, setIsClickNext] = useState<boolean>(true);
   const preArrow = useCallback(() => {
-    console.log("pre");
     emblaApi?.scrollPrev();
   }, [emblaApi]);
   const nextArrow = useCallback(() => {
-    console.log("next");
     emblaApi?.scrollNext();
   }, [emblaApi]);
   const hanlderClickArrow = useCallback((emblaApi: EmblaCarouselType) => {

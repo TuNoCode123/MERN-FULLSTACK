@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from "../../../redux/hook";
 import {
   getListUsers,
   selectIsLoading,
+  selectIsLoadingCreateDoctor,
   selectListUser,
 } from "../../../redux/reducer/reducer-excuteUser";
 import { RiPencilFill } from "react-icons/ri";
@@ -26,11 +27,7 @@ const TableUser = ({
   setShow,
   choseUser,
 }: {
-  createOrEditOrDeleteUser: (
-    type?: String,
-    user?: Iuser<string>,
-    index?: number
-  ) => void;
+  createOrEditOrDeleteUser: (type?: String, user?: Iuser<string>) => void;
   choseUser: (user?: Iuser<string>) => void;
   setShow: React.SetStateAction<any>;
   show: boolean;
@@ -43,7 +40,6 @@ const TableUser = ({
   const listUser = useAppSelector(selectListUser);
   return (
     <>
-      {" "}
       {isLoading == true ? (
         <div className="loading-data">
           <SyncLoader

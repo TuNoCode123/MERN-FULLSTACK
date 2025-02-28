@@ -3,13 +3,13 @@ import { IoMdLock } from "react-icons/io";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useAppDispatch, useAppSelector } from "../../../redux/hook";
-import { PATH } from "../../../constants/path";
+
 import {
   login,
   selectIsLogin,
   selectUserInfor,
 } from "../../../redux/reducer/reducer-login";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 const Input = ({
   click,
   setClick,
@@ -18,6 +18,7 @@ const Input = ({
   setClick: Dispatch<SetStateAction<boolean>>;
 }) => {
   const [email, setEmail] = useState<string>();
+  const location = useLocation();
   const [maxtoase, setMaxToast] = useState<number>(1);
   const [passWord, setPassWord] = useState<string>();
   const dispath = useAppDispatch();
@@ -26,11 +27,11 @@ const Input = ({
   const islogin = useAppSelector(selectIsLogin);
   if (islogin && maxtoase == 1) {
     setMaxToast(2);
-    if (userInfor.errCode == 0) {
-      toast.success(userInfor.message);
-      nav("/");
+    if (userInfor?.errCode == 0) {
+      toast.success(userInfor?.message);
+      nav(`/chat`);
     } else {
-      toast.error(userInfor.message);
+      toast.error(userInfor?.message);
     }
   }
   const handlerSubmit = async () => {

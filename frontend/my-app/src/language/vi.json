@@ -13,12 +13,20 @@
         "user": "Người dùng",
         "manageUser": "Quản lí người dùng",
         "manageDoctor": "Quản lí bác sĩ",
-        "manageAdmin": "Quản lí admin"
+        "manageAdmin": "Quản lí admin",
+        "manageSchedual": "Quản lí lịch khám của bác sĩ",
+        "confirmSchedual": "Quản lý đặt lịch",
+        "manageClinic": "Quản lí phòng khám"
+      },
+      "speciality": {
+        "name": "Chuyên Khoa",
+        "manageSpeciality": "Quản Lý Chuyên Khoa"
       },
       "languages": {
         "hello": "Xin chào, "
       }
     },
+
     "banner": {
       "form": {
         "email": "Email",
@@ -32,8 +40,16 @@
         "avata": "Ảnh Đại Diện",
         "submit": "Tạo",
         "edit": "sửa",
-        "role": "Vai Trò"
+        "role": "Vai Trò",
+        "speciality": "Chuyên Khoa"
       }
     }
+  },
+  "main": {
+    "doctor": "Bác Sĩ Nổi Bật",
+    "medicine": "Cơ Sở Y Tế",
+    "speciality": "Chuyên Khoa",
+    "anymore": "Xem Thêm",
+    "clinic": "Cơ Sở Y Tế"
   }
 }

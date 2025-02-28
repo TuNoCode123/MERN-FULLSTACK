@@ -3,30 +3,7 @@
   height: 500px;
   position: absolute;
   left: 0;
-  .title2-content {
-    width: 100%;
-    position: absolute;
-    top: 0;
-    z-index: 8888;
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-    padding: 0 40px;
-    .t2-child1 {
-      font-size: 30px;
-      font-weight: 400;
-    }
-    .t2-child2 {
-      background-color: rgb(218 243 246);
-      width: max-content;
-      height: max-content;
-      padding: 10px 15px;
-      font-size: 25px;
-      border-radius: 20px;
-      color: rgb(52 146 158);
-      cursor: pointer;
-    }
-  }
+
   .doctor-container {
     width: 100%;
     height: 100%;
@@ -93,7 +70,7 @@
     justify-content: space-between;
     padding: 0 15px;
     top: 60%;
-    z-index: 999999999999;
+    z-index: 999;
     .arrow-pre {
       width: 50px;
       height: 50px;
@@ -104,7 +81,7 @@
       background-color: white;
       cursor: pointer;
       border: 1px solid rgba(59, 130, 246, 0.5);
-      z-index: 999999999999;
+      z-index: 999;
       transition: 0.1s all linear;
 
       svg {
@@ -130,7 +107,7 @@
       border-radius: 15px;
       cursor: pointer;
       border: 1px solid rgba(59, 130, 246, 0.5);
-      z-index: 999999999999;
+      z-index: 9999;
       transition: 0.1s all linear;
       svg {
         width: 35px;

@@ -1,0 +1,95 @@
+.main-container {
+  width: 85%;
+  height: 100%;
+  display: flex;
+  margin: 0 auto;
+  margin-top: 50px;
+  padding-bottom: 50px;
+  gap: 50px;
+  .m-left {
+    width: 30%;
+    min-height: 100%;
+    background-color: #eee;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    // border: 1px solid red;
+
+    .user {
+      width: 100%;
+      height: 60px;
+      background-color: rgb(48, 45, 45);
+      border-bottom: 1px solid wheat;
+      padding: 5px 10px;
+      display: flex;
+      gap: 10px;
+      position: relative;
+      cursor: pointer;
+      &.click {
+        background-color: rgb(90, 85, 85);
+      }
+      .i-left {
+        width: 10%;
+        height: 100%;
+        display: flex;
+        svg {
+          width: 25px;
+          height: 25px;
+          align-self: flex-end;
+        }
+      }
+      .i-right {
+        width: 90%;
+        height: 100%;
+        display: flex;
+        position: relative;
+        align-items: center;
+        .ir-left {
+          position: absolute;
+          left: 5px;
+          .text {
+            font-size: 14px;
+          }
+        }
+        .ir-right {
+          position: absolute;
+          right: 5px;
+          display: flex;
+          flex-direction: column;
+          align-items: end;
+          gap: 10px;
+          .ntf {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background-color: rgb(13, 148, 13);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+        }
+      }
+      .online {
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        background-color: #2772db;
+        position: absolute;
+        right: -15px;
+        top: -10px;
+      }
+    }
+  }
+  .m-right {
+    width: 70%;
+    min-height: 100%;
+    .chat {
+      font-size: 25px;
+      font-weight: 600;
+      text-align: center;
+    }
+    .chat1 {
+      font-size: 25px;
+      font-weight: 600;
+      text-align: center;
+    }
+  }
+}

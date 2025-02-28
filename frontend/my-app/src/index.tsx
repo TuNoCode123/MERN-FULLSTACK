@@ -10,15 +10,18 @@ import { IntlProvider, FormattedMessage, FormattedNumber } from "react-intl";
 import { useAppSelector } from "./redux/hook";
 import { selectLanguage } from "./redux/reducer/reducer-login";
 import AppIntl from "./index-intL";
+import ChatApp from "./components/context/context-chat";
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
-      <AppIntl>
-        <App />
-      </AppIntl>
+      <ChatApp>
+        <AppIntl>
+          <App />
+        </AppIntl>
+      </ChatApp>
     </PersistGate>
   </Provider>
 );

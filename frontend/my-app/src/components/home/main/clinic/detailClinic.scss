@@ -1,0 +1,96 @@
+.detail-container {
+  width: 100%;
+  height: max-content;
+  .detail-header {
+    width: 100%;
+    height: 80px;
+  }
+  .detail-banner {
+    width: 95%;
+    // background-color: red;
+    position: relative;
+    height: 100%;
+    margin: 0 auto;
+    .background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 200px;
+      // background-color: rgb(223, 213, 213);
+      z-index: 5;
+    }
+    .detail-collapse {
+      width: 100%;
+
+      cursor: pointer;
+    }
+  }
+  .detail-list {
+    color: rgb(113, 197, 242);
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 600;
+    margin-top: 15px;
+  }
+  .detail-manner {
+    width: 100%;
+    height: max-content;
+    // background-color: blue;
+    margin-top: 20px;
+    background-color: rgb(238 238 238);
+    .manner-child1 {
+      width: 250px;
+      height: 50px;
+      margin: 10px 28px;
+      transform: translateY(10px);
+      // background-color: red;
+    }
+    .list-doctor {
+      width: 96%;
+      margin: 20px auto;
+      .detail-child {
+        background-color: white;
+        border-radius: 10px;
+        // background-color: blue;
+        height: max-content;
+        box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28);
+        display: flex;
+        .child-left {
+          width: 50%;
+          height: 100%;
+
+          .intro {
+            height: 100%;
+            width: 100%;
+            padding: 20px;
+            .content-left {
+              width: 30% !important;
+            }
+          }
+        }
+        .child-right {
+          width: 50%;
+          height: 100%;
+          border-left: 1px solid #eee;
+          padding: 10px;
+          margin: 5px 0;
+          .right-up {
+            width: 100%;
+            height: max-content;
+          }
+          .right-bot {
+            width: 100%;
+            height: max-content;
+            .infor-container .content-right-up {
+              margin-left: 0;
+            }
+            .infor-container .content-right-bottom {
+              margin-left: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,11 +1,8 @@
 import instance from "../config/axios";
-import { Ilogin } from "../constants/interface";
+import { IdataDetailDoctor, Ilogin, Iuser } from "../constants/interface";
 
-export const loginUser = async (
-  email: string,
-  passWord: string
-): Promise<Ilogin> => {
-  const res: Ilogin = await instance.post("/login", {
+export const loginUser = async (email: string, passWord: string) => {
+  const res: IdataDetailDoctor<Iuser<string>> = await instance.post("/login", {
     email,
     passWord,
   });

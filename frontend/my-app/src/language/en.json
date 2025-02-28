@@ -13,7 +13,14 @@
         "user": "User",
         "manageUser": "Manage User",
         "manageDoctor": "Manage Doctor",
-        "manageAdmin": "Manage Admin"
+        "manageAdmin": "Manage Admin",
+        "manageSchedual": "Manage the Schedual's doctor",
+        "confirmSchedual": "Patient Schedual Manage",
+        "manageClinic": "Clinics Manager"
+      },
+      "speciality": {
+        "name": "Speciality",
+        "manageSpeciality": "Manage Speciality"
       },
       "languages": {
         "hello": "Hello, "
@@ -32,8 +39,16 @@
         "avata": "Avata",
         "submit": "Create",
         "edit": "Edit",
-        "role": "Role"
+        "role": "Role",
+        "speciality": "Speciality"
       }
     }
+  },
+  "main": {
+    "doctor": "Markable Doctor",
+    "medicine": "Health Facilities ",
+    "speciality": "Speciality",
+    "anymore": "See More",
+    "clinic": "Medicine Facilities"
   }
 }

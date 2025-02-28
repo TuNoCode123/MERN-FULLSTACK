@@ -1,0 +1,15 @@
+.manage-container {
+  width: 100%;
+  .manage-up {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .manage-header {
+    width: max-content;
+    height: max-content;
+    margin: 10px auto;
+    font-size: 30px;
+    font-weight: 600;
+  }
+}

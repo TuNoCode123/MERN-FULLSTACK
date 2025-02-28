@@ -1,0 +1,33 @@
+.intro-container {
+  display: flex;
+  gap: 10px;
+  height: 100%;
+  margin-bottom: 50px;
+  .content-left {
+    width: 10%;
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    .detail-img {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+  }
+  .content-right {
+    width: 90%;
+    padding: 20px;
+    .r-bottom {
+      display: flex;
+      gap: 5px;
+      span {
+        svg {
+          transform: translateY(-5px);
+        }
+      }
+    }
+  }
+}

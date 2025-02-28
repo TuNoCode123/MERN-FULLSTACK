@@ -7,11 +7,11 @@ import {
   selectLanguage,
   selectUserInfor,
 } from "../../redux/reducer/reducer-login";
-import { IntlProvider, FormattedMessage, FormattedNumber } from "react-intl";
+import { FormattedMessage } from "react-intl";
 import { menu } from "./systemLanguge";
 import { languages } from "../../constants/languages";
 import { Outlet, useNavigate } from "react-router-dom";
-import { PATH } from "../../constants/path";
+import { PATH, ROLE } from "../../constants/path";
 import { Link } from "react-router-dom";
 const System = () => {
   const getName = useAppSelector(selectUserInfor);
@@ -25,31 +25,137 @@ const System = () => {
     <div className="system-container">
       <div className="system-header">
         <div className="left-system-header">
-          <Dropdown>
-            <Dropdown.Toggle variant="success" id="dropdown-basic">
-              <FormattedMessage id={`${menu.user.name}`} />
-            </Dropdown.Toggle>
-            <Dropdown.Menu>
-              {menu &&
+          {getName?.data.roleId != ROLE.DOCTOR && (
+            <div className="user">
+              <Dropdown>
+                <Dropdown.Toggle variant="success" id="dropdown-basic">
+                  <FormattedMessage id={`${menu.user.name}`} />
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                  {menu &&
+                  menu.user &&
+                  menu.user.child.length > 0 &&
+                  getName?.data.roleId != ROLE.DOCTOR
+                    ? menu.user.child.map((item, index) => {
+                        return (
+                          <>
+                            {" "}
+                            <Dropdown.Item as={Link} to={`${item.link}`}>
+                              <FormattedMessage id={`${item.id}`} />
+                            </Dropdown.Item>
+                            {index < menu.user.child.length - 1 ? (
+                              <Dropdown.Divider />
+                            ) : (
+                              ""
+                            )}
+                          </>
+                        );
+                      })
+                    : menu.doctor.child.map((item, index) => {
+                        return (
+                          <>
+                            {" "}
+                            <Dropdown.Item as={Link} to={`${item.link}`}>
+                              <FormattedMessage id={`${item.id}`} />
+                            </Dropdown.Item>
+                            {index < menu.user.child.length - 1 ? (
+                              <Dropdown.Divider />
+                            ) : (
+                              ""
+                            )}
+                          </>
+                        );
+                      })}
+                </Dropdown.Menu>
+              </Dropdown>
+            </div>
+          )}
+          {/* <div className="user">
+            <Dropdown>
+              <Dropdown.Toggle variant="success" id="dropdown-basic">
+                <FormattedMessage id={`${menu.user.name}`} />
+              </Dropdown.Toggle>
+              <Dropdown.Menu>
+                {menu &&
                 menu.user &&
                 menu.user.child.length > 0 &&
-                menu.user.child.map((item, index) => {
-                  return (
-                    <>
-                      {" "}
-                      <Dropdown.Item as={Link} to={`${item.link}`}>
-                        <FormattedMessage id={`${item.id}`} />
-                      </Dropdown.Item>
-                      {index < menu.user.child.length - 1 ? (
-                        <Dropdown.Divider />
-                      ) : (
-                        ""
-                      )}
-                    </>
-                  );
-                })}
-            </Dropdown.Menu>
-          </Dropdown>
+                getName?.data.roleId != ROLE.DOCTOR
+                  ? menu.user.child.map((item, index) => {
+                      return (
+                        <>
+                          {" "}
+                          <Dropdown.Item as={Link} to={`${item.link}`}>
+                            <FormattedMessage id={`${item.id}`} />
+                          </Dropdown.Item>
+                          {index < menu.user.child.length - 1 ? (
+                            <Dropdown.Divider />
+                          ) : (
+                            ""
+                          )}
+                        </>
+                      );
+                    })
+                  : menu.doctor.child.map((item, index) => {
+                      return (
+                        <>
+                          {" "}
+                          <Dropdown.Item as={Link} to={`${item.link}`}>
+                            <FormattedMessage id={`${item.id}`} />
+                          </Dropdown.Item>
+                          {index < menu.user.child.length - 1 ? (
+                            <Dropdown.Divider />
+                          ) : (
+                            ""
+                          )}
+                        </>
+                      );
+                    })}
+              </Dropdown.Menu>
+            </Dropdown>
+          </div> */}
+          <div className="speciality">
+            <Dropdown>
+              <Dropdown.Toggle variant="success" id="dropdown-basic">
+                <FormattedMessage id={`${menu.speciality.name}`} />
+              </Dropdown.Toggle>
+              <Dropdown.Menu>
+                {menu &&
+                menu.speciality &&
+                menu.speciality.child.length > 0 &&
+                getName?.data.roleId != ROLE.DOCTOR
+                  ? menu.speciality.child.map((item, index) => {
+                      return (
+                        <>
+                          {" "}
+                          <Dropdown.Item as={Link} to={`${item.link}`}>
+                            <FormattedMessage id={`${item.id}`} />
+                          </Dropdown.Item>
+                          {index < menu.speciality.child.length - 1 ? (
+                            <Dropdown.Divider />
+                          ) : (
+                            ""
+                          )}
+                        </>
+                      );
+                    })
+                  : menu.doctor.child.map((item, index) => {
+                      return (
+                        <>
+                          {" "}
+                          <Dropdown.Item as={Link} to={`${item.link}`}>
+                            <FormattedMessage id={`${item.id}`} />
+                          </Dropdown.Item>
+                          {index < menu.user.child.length - 1 ? (
+                            <Dropdown.Divider />
+                          ) : (
+                            ""
+                          )}
+                        </>
+                      );
+                    })}
+              </Dropdown.Menu>
+            </Dropdown>
+          </div>
         </div>
         <div className="right-system-header">
           <div className="system-user">

@@ -12,18 +12,10 @@ function Identifier({
 }: {
   show: boolean;
   setShow: React.SetStateAction<any>;
-  createOrEditOrDeleteUser: (
-    type?: String,
-    user?: Iuser<string>,
-    index?: number
-  ) => void;
+  createOrEditOrDeleteUser: (type?: String, user?: Iuser<string>) => void;
   choseUsers?: Iuser<string>;
 }) {
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-  const handleDeleteUser = () => {
-    createOrEditOrDeleteUser(CHOSE.DELETE);
-  };
   return (
     <>
       <Modal show={show} onHide={handleClose}>

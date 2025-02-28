@@ -7,8 +7,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    // .left-system-header {
-    // }
+    .left-system-header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
     .right-system-header {
       display: flex;
       gap: 25px;

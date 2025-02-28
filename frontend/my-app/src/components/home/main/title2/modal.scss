@@ -1,0 +1,44 @@
+.react-responsive-modal-container {
+  padding: 0 !important;
+
+  .react-responsive-modal-modal {
+    border-radius: 10px;
+  }
+  .react-responsive-modal-closeButton {
+    svg {
+      display: none !important;
+    }
+  }
+  .titler-header {
+    width: 100%;
+    height: max-content;
+    background-color: #f6f6f6;
+    position: relative;
+    padding: 5px;
+    .th {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      .th-left {
+        .th-img {
+          width: 150px;
+          height: 150px;
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: contain;
+          border-radius: 50%;
+        }
+      }
+      .th-right {
+      }
+    }
+  }
+  .title-body {
+    // padding: 20px;
+  }
+  .title-close {
+    position: relative;
+
+    text-align: end;
+  }
+}

@@ -1,17 +1,13 @@
 import reqUser from "../respitory/req-User";
 import { revertPassWord } from "../utils/generall/revertPassWord";
-import { Idata, Ires } from "../utils/interfaces/interface-user";
+import { IdataRes, Ires, userType } from "../utils/interfaces/interface-user";
 class SevicesAuth {
   loginUser = async (email: string, passWord: string) => {
     const isEmail = await reqUser.findEmailIsExisted(email);
-    let response: Idata<Ires> = {
+    let response: IdataRes<userType> = {
       errCode: 0,
       message: "",
-      data: {
-        email: "",
-        firstName: "",
-        lastName: "",
-      },
+      data: {},
     };
     if (isEmail == 1) {
       response.errCode = 1;
@@ -22,7 +18,7 @@ class SevicesAuth {
       response.message = "server error";
       response.data = {};
     } else {
-      const isTrue = revertPassWord(passWord, isEmail.passWord);
+      const isTrue = revertPassWord(passWord, isEmail?.passWord);
       if (isTrue) {
         const { passWord, ...otherProps } = isEmail;
         response.data = otherProps;

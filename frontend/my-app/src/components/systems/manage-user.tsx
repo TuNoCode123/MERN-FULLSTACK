@@ -5,11 +5,7 @@ import Row from "react-bootstrap/Row";
 import { FaUpload } from "react-icons/fa";
 import "./system.scss";
 import { useEffect, useState } from "react";
-import {
-  b64toBlob,
-  convertFileToBase64,
-  generateImageFromBuffer,
-} from "../../util/convertBase64";
+import { convertFileToBase64 } from "../../util/convertBase64";
 import Lightbox from "react-image-lightbox";
 import "react-image-lightbox/style.css";
 import { banner } from "./systemLanguge";
@@ -28,25 +24,36 @@ import {
 import { Buffer } from "buffer";
 import TableUser from "./admin/tableUser";
 import {
+  createDoctor,
   getListUsers,
-  selectIsLoading,
-  selectListUser,
+  removeErrAndMess,
+  selectErrCode,
+  selectIsLoadingCreateDoctor,
+  selectMessage,
 } from "../../redux/reducer/reducer-excuteUser";
 import { toast } from "react-toastify";
 import Identifier from "./admin/model-indentify";
+import {
+  getAllSpeciality,
+  selectSpeciality,
+} from "../../redux/reducer/reducer-speciality";
 const ManageUser = () => {
   const [preImg, setPreImg] = useState<any>();
   const [isOpen, setIsOpen] = useState(false);
   const [user, setUser] = useState<Partial<Iuser<string>>>();
   const [choseUsers, setChoseUser] = useState<Iuser<string>>();
   const currentLanguage = useAppSelector(selectLanguage);
-  // const isLoading = useAppSelector(selectIsLoading);
-  // const listUser = useAppSelector(selectListUser);
+  const errCodeCreate = useAppSelector(selectErrCode);
+  const message_Create = useAppSelector(selectMessage);
+  if (errCodeCreate == 0) {
+    toast.success(message_Create);
+  }
   const [preList, setPreList] = useState<Partial<Iuser<String>[]>>();
   const [show, setShow] = useState<boolean>(false);
   const [action, setAction] = useState<string>(CHOSE.CREATE);
   const [rpLanguage, setRpLanguage] = useState<IallCode<IallCodeData>[]>([]);
   const dispath = useAppDispatch();
+  const isLoadingCreate = useAppSelector(selectIsLoadingCreateDoctor);
   const getUserViaTypes = async () => {
     const rsGender = servicesSystem.getUserViaType(allcode.gender);
     const rsPositon = servicesSystem.getUserViaType(allcode.position);
@@ -54,6 +61,7 @@ const ManageUser = () => {
     const results: any = await Promise.all([rsGender, rsPositon, rsRole]);
     setRpLanguage(results);
   };
+
   useEffect(() => {
     getUserViaTypes();
   }, [currentLanguage]);
@@ -63,7 +71,7 @@ const ManageUser = () => {
     if (event && event.target && event.target.files != null) {
       const file = event.target.files[0];
       const Base64file: any = await convertFileToBase64(file);
-      setUser({ ...user, image: Base64file });
+      setUser({ ...user, images: event.target.files[0] });
       setPreImg(Base64file);
     }
   };
@@ -88,48 +96,22 @@ const ManageUser = () => {
     userTable?: Iuser<string>
   ) => {
     if (type == CHOSE.CREATE) {
-      console.log(user);
       if (!user) return toast.error("empty input");
       if (!user.email || !user.passWord) {
         return toast.error("empty email or passWord");
       }
-      const response = await servicesSystem.createUswer(user);
-      if (response.errCode == 0) {
-        toast.success(response.message);
-        setUser({
-          email: "",
-          passWord: "",
-          firstName: "",
-          lastName: "",
-          address: "",
-          phoneNumber: "",
-          gender:
-            currentLanguage == "en"
-              ? rpLanguage[0]?.data[0]?.valueEn
-              : rpLanguage[0]?.data[0]?.valueVi,
-          image: "",
-          roleId:
-            currentLanguage == "en"
-              ? rpLanguage[1]?.data[0]?.valueEn
-              : rpLanguage[1]?.data[0]?.valueVi,
-          positionId:
-            currentLanguage == "en"
-              ? rpLanguage[2]?.data[0]?.valueEn
-              : rpLanguage[2]?.data[0]?.valueVi,
-          // spectialId?: string;
-        });
-        setPreImg(false);
-      }
-      dispath(getListUsers());
+      await dispath(createDoctor(user));
+      await dispath(getListUsers());
+      await dispath(removeErrAndMess());
+      hanlderConvertInitial();
     }
     if (type == CHOSE.EDIT) {
       setAction(CHOSE.EDIT);
-
-      const image = userTable?.image;
+      const image = userTable?.image?.data;
       if (image) {
         const imageBase64 = Buffer.from(image, "base64").toString("binary");
         setPreImg(imageBase64);
-        setUser({ ...userTable, image: imageBase64 });
+        setUser({ ...userTable, images: imageBase64 });
         return;
       }
       setUser({ ...userTable });
@@ -263,7 +245,7 @@ const ManageUser = () => {
             </Form.Group>
           </Row>
 
-          <Row className="mb-3">
+          <Row className="mb-3 mt-3">
             <Form.Group className="col-3" controlId="formGridCity">
               <Form.Label>
                 <FormattedMessage id={banner.form.input7} />
@@ -281,7 +263,7 @@ const ManageUser = () => {
                       rpLanguage[0]?.data?.map((item, index) => {
                         return (
                           <>
-                            <option key={index} value={item.key}>
+                            <option key={index} value={item.keyMap}>
                               {item.valueEn}
                             </option>
                           </>
@@ -295,7 +277,7 @@ const ManageUser = () => {
                       rpLanguage[0].data?.map((item, index) => {
                         return (
                           <>
-                            <option key={index} value={item.key}>
+                            <option key={index} value={item.keyMap}>
                               {item.valueVi}
                             </option>
                           </>
@@ -305,7 +287,6 @@ const ManageUser = () => {
                 )}
               </Form.Select>
             </Form.Group>
-
             <Form.Group as={Col} controlId="formGridState">
               <Form.Label>
                 <FormattedMessage id={banner.form.input8} />
@@ -313,7 +294,7 @@ const ManageUser = () => {
               <Form.Select
                 defaultValue={
                   rpLanguage && rpLanguage.length > 0
-                    ? rpLanguage[1]?.data[1].key
+                    ? rpLanguage[1]?.data[1].keyMap
                     : ""
                 }
                 value={user?.positionId}
@@ -328,7 +309,7 @@ const ManageUser = () => {
                       rpLanguage[1]?.data?.map((item, index) => {
                         return (
                           <>
-                            <option key={index} value={item.key}>
+                            <option key={index} value={item.keyMap}>
                               {item.valueEn}
                             </option>
                           </>
@@ -342,7 +323,7 @@ const ManageUser = () => {
                       rpLanguage[1].data?.map((item, index) => {
                         return (
                           <>
-                            <option key={index} value={item.key}>
+                            <option key={index} value={item.keyMap}>
                               {item.valueVi}
                             </option>
                           </>
@@ -352,7 +333,6 @@ const ManageUser = () => {
                 )}
               </Form.Select>
             </Form.Group>
-
             <Form.Group as={Col} controlId="formGridState">
               <Form.Label>
                 <FormattedMessage id={banner.form.input12} />
@@ -360,7 +340,7 @@ const ManageUser = () => {
               <Form.Select
                 defaultValue={
                   rpLanguage && rpLanguage.length > 0
-                    ? rpLanguage[2]?.data[1].key
+                    ? rpLanguage[2]?.data[1].keyMap
                     : ""
                 }
                 value={user?.roleId}
@@ -375,7 +355,7 @@ const ManageUser = () => {
                       rpLanguage[2]?.data?.map((item, index) => {
                         return (
                           <>
-                            <option key={index} value={item.key}>
+                            <option key={index} value={item.keyMap}>
                               {item.valueEn}
                             </option>
                           </>
@@ -389,7 +369,7 @@ const ManageUser = () => {
                       rpLanguage[2].data?.map((item, index) => {
                         return (
                           <>
-                            <option key={index} value={item.key}>
+                            <option key={index} value={item.keyMap}>
                               {item.valueVi}
                             </option>
                           </>
@@ -399,7 +379,6 @@ const ManageUser = () => {
                 )}
               </Form.Select>
             </Form.Group>
-
             <Form.Group as={Col} controlId="formGridZip">
               <Form.Label>
                 <FormattedMessage id={banner.form.input9} />
@@ -429,7 +408,7 @@ const ManageUser = () => {
               </div>
             </Form.Group>
           </Row>
-          <Row className="user-submit">
+          <Row className="user-submit mt-2">
             <Button
               variant={action == CHOSE.CREATE ? "primary" : "dark"}
               type="button"

@@ -32,6 +32,8 @@ class MethodUsers implements ReqMethodsUser {
         defaults: {
           ...user,
         },
+        raw: true,
+        nest: true,
       });
       return [userNew, created];
     } catch (error) {
@@ -85,7 +87,6 @@ class MethodUsers implements ReqMethodsUser {
         where: {
           email: email,
         },
-        attributes: ["email", "passWord", "lastName", "firstName"],
         raw: true,
       });
       if (!response) {

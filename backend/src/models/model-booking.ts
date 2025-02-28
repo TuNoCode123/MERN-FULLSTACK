@@ -7,6 +7,7 @@ import {
   ForeignKey,
 } from "sequelize-typescript";
 import AllCodes from "./model-allCode";
+import User from "./model-user";
 
 @Table({
   tableName: Booking.TABLE_NAME,
@@ -19,6 +20,8 @@ class Booking extends Model {
   public static COLUMN_PATIENTID = "patientId" as string;
   public static COLUMN_DATE = "date" as string;
   public static COLUMN_TIMETYPE = "timeType" as string;
+  public static COLUMN_TOKEN = "token" as string;
+  public static COLUMN_PayMent = "payment" as string;
 
   @Column({
     type: DataType.INTEGER,
@@ -40,17 +43,37 @@ class Booking extends Model {
   })
   doctorId!: number;
 
+  @ForeignKey(() => User)
   @Column({
-    type: DataType.STRING(255),
+    type: DataType.INTEGER,
     field: Booking.COLUMN_PATIENTID,
   })
   patientId!: number;
 
+  @BelongsTo(() => User, {
+    targetKey: "id",
+    as: "doctorBooking",
+  })
+  bookingDoctor!: User;
+
   @Column({
-    type: DataType.DATE,
+    type: DataType.STRING,
     field: Booking.COLUMN_DATE,
   })
-  date!: Date;
+  date!: string;
+
+  @Column({
+    type: DataType.STRING,
+    field: Booking.COLUMN_TOKEN,
+  })
+  token!: string;
+
+  @Column({
+    type: DataType.BOOLEAN,
+    field: Booking.COLUMN_PayMent,
+    defaultValue: false,
+  })
+  payment!: string;
 
   @ForeignKey(() => AllCodes)
   @Column({
@@ -60,7 +83,8 @@ class Booking extends Model {
   timeType!: string;
 
   @BelongsTo(() => AllCodes, {
-    targetKey: "key",
+    targetKey: "keyMap",
+    as: "allCode",
   })
   booking!: AllCodes;
 }

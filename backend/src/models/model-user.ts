@@ -3,11 +3,16 @@ import {
   Column,
   DataType,
   ForeignKey,
+  HasMany,
+  HasOne,
   Model,
   Table,
 } from "sequelize-typescript";
 import AllCodes from "./model-allCode";
 import Speciality from "./model-speciality";
+import Markdown from "./model-markdown";
+import DoctorInfor from "./model-doctorInfor";
+import Booking from "./model-booking";
 
 @Table({
   tableName: User.TABLE_NAME,
@@ -18,7 +23,6 @@ class User extends Model {
   public static COLUMN_LAST_NAME = "lastName" as string;
   public static COLUMN_FIRST_NAME = "firstName" as string;
   public static COLUMN_FULLNAME = "fullName" as string;
-
   public static COLUMN_EMAIL = "email" as string;
   public static COLUMN_PASSWORD = "passWord" as string;
   public static COLUMN_ADDRESS = "address" as string;
@@ -72,11 +76,17 @@ class User extends Model {
   })
   phoneNumber!: string;
 
+  @ForeignKey(() => AllCodes)
   @Column({
     type: DataType.STRING,
     field: User.COLUMN_GENDER,
   })
   gender!: string;
+  @BelongsTo(() => AllCodes, {
+    targetKey: "keyMap",
+    as: "genderAllcode",
+  })
+  genderAllcode!: AllCodes;
 
   @Column({
     type: DataType.BLOB("long"),
@@ -93,7 +103,7 @@ class User extends Model {
   roleId!: string;
 
   @BelongsTo(() => AllCodes, {
-    targetKey: "key",
+    targetKey: "keyMap",
     foreignKey: User.COLUMN_ROLEID,
     as: "role",
   })
@@ -118,11 +128,27 @@ class User extends Model {
   positionId!: string;
 
   @BelongsTo(() => AllCodes, {
-    targetKey: "key",
+    targetKey: "keyMap",
     foreignKey: User.COLUMN_POSITIONID,
     as: "position",
   })
   userPosition!: AllCodes;
+  @HasOne(() => Markdown, {
+    sourceKey: "id",
+  })
+  userMarkdown!: Markdown;
+
+  @HasOne(() => DoctorInfor, {
+    sourceKey: "id",
+    as: "doctorInfor",
+  })
+  inforDoctor!: DoctorInfor;
+
+  @HasMany(() => Booking, {
+    sourceKey: "id",
+    as: "doctorBooking",
+  })
+  doctorBooking!: Booking;
 }
 
 export default User;

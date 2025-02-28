@@ -1,0 +1,24 @@
+.title2-content {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  padding: 0 40px;
+  z-index: 10;
+  .t2-child1 {
+    font-size: 25px;
+    font-weight: 600;
+  }
+  .t2-child2 {
+    background-color: rgb(218 243 246);
+    width: max-content;
+    height: max-content;
+    padding: 10px 15px;
+    font-size: 25px;
+    border-radius: 20px;
+    color: rgb(52 146 158);
+    cursor: pointer;
+  }
+}

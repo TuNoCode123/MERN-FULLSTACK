@@ -1,18 +1,17 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "../store";
-import { Ilogin } from "../../constants/interface";
+import { IdataDetailDoctor, Ilogin, Iuser } from "../../constants/interface";
 import { loginUser } from "../../services/login";
 import { languages } from "../../constants/languages";
 interface CounterState {
   islogin: boolean;
-  userInfor: Partial<Ilogin>;
+  userInfor?: IdataDetailDoctor<Iuser<string>>;
   typeLang: string;
 }
 
 const initialState: CounterState = {
   islogin: false,
-  userInfor: {},
   typeLang: languages.vi,
 };
 export const login = createAsyncThunk(
@@ -23,7 +22,7 @@ export const login = createAsyncThunk(
   }: {
     email: string;
     passWord: string;
-  }): Promise<Ilogin> => {
+  }): Promise<IdataDetailDoctor<Iuser<string>>> => {
     const response = await loginUser(email, passWord);
     return response;
   }

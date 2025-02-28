@@ -11,6 +11,10 @@ import {
   REGISTER,
 } from "redux-persist";
 import { excuteUser } from "./reducer/reducer-excuteUser";
+import { specialitySlice } from "./reducer/reducer-speciality";
+import { clinicSlice } from "./reducer/reducer-clinic";
+import { paymentSlice } from "./reducer/reducer-payment";
+import { chatSlice } from "./reducer/reducer-chat";
 const authPersistConfig = {
   key: "auth",
   storage,
@@ -20,6 +24,10 @@ export const store = configureStore({
   reducer: {
     login: persistedReducer,
     tableUser: excuteUser.reducer,
+    speciality: specialitySlice.reducer,
+    clinic: clinicSlice.reducer,
+    payment: paymentSlice.reducer,
+    chat: chatSlice.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

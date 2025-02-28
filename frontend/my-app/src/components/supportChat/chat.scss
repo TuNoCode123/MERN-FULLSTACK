@@ -1,0 +1,40 @@
+.ChatApp {
+  height: 100vh !important;
+}
+.Composer-inputWrap {
+  display: flex !important;
+  gap: 20px;
+  align-items: center;
+}
+.Input.Input--outline.Composer-input {
+  width: 350px;
+}
+.chat-image {
+  background-color: black;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  color: white;
+}
+.fa-solid.fa-image {
+  cursor: pointer;
+}
+
+.preImg {
+  width: 150px;
+  height: 100px;
+  margin: 10px auto;
+  border: 1px solid black;
+  display: none;
+  &.active {
+    display: block;
+  }
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}

@@ -7,6 +7,7 @@ import Speciality from "../models/model-speciality";
 import Clinic from "../models/model-clinic";
 import AllCodes from "../models/model-allCode";
 import Markdown from "../models/model-markdown";
+import DoctorInfor from "../models/model-doctorInfor";
 require("dotenv").config();
 class Database {
   public sequelize: Sequelize | undefined;
@@ -35,6 +36,7 @@ class Database {
           Speciality,
           Clinic,
           Markdown,
+          DoctorInfor,
         ],
         logging: false,
         pool: {
@@ -49,9 +51,9 @@ class Database {
         },
       });
       await this.sequelize.authenticate();
-      console.log("Connect DataBase successfully");
+      console.log("Connect MySql successfully");
     } catch (error) {
-      console.log("Connect DataBase fail", error);
+      console.log("Connect MySql fail", error);
     }
   };
 }

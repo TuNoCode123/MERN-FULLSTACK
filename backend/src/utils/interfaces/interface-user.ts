@@ -1,5 +1,3 @@
-import User from "../../models/model-user";
-
 export interface userType {
   id?: number;
   firstName?: string;
@@ -13,6 +11,10 @@ export interface userType {
   spectialId?: string;
   image?: any;
   position?: string;
+  inforBooking?: Ires1;
+  inforDoctor?: Ires2;
+  calender?: { time: string };
+  language?: string;
 }
 export interface ErrorType extends Error {
   status: number;
@@ -22,8 +24,20 @@ export interface Ires {
   firstName?: string;
   lastName?: string;
 }
-export interface Idata<T> {
+export interface Ires1 {
+  date: string;
+  doctorId: number;
+  timeType: string;
+  patientId: number;
+  statusId: string;
+}
+export interface Ires2 {
+  fullName: string;
+  position: string;
+  id: number;
+}
+export interface IdataRes<T> {
   errCode?: number;
   message?: string;
-  data?: T;
+  data?: T | {};
 }
